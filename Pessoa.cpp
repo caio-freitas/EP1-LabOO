@@ -1,27 +1,27 @@
 #include "Pessoa.h"
+#include <iostream>
+
 
 Pessoa::Pessoa(string nome, double valorPorHora, int horasDiarias):
   nome(nome), valorPorHora(valorPorHora), horasDiarias(horasDiarias){
-
-  }
+}
 
 Pessoa::~Pessoa(){
-//Implementar
 }
 
 string Pessoa::getNome(){
-//Implementar
+    return nome;
 }
 double Pessoa::getValorPorHora(){
-//Implementar
+    return valorPorHora;
 }
 int Pessoa::getHorasDiarias(){
-//Implementar
+    return horasDiarias;
 }
 double Pessoa::getCusto(int dias){
-//Implementar
+    return dias*horasDiarias*valorPorHora;
 }
 
 void Pessoa::imprimir(){
-//Implementar
+    cout << nome << " - R$" << valorPorHora << " - " << horasDiarias << "h por dia" << endl;
 }

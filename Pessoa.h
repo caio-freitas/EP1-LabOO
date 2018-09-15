@@ -1,4 +1,15 @@
+#ifndef PESSOA_H
+#define PESSOA_H
+
+#include <string>
+using namespace std;
+
 class Pessoa {
+private:
+    string nome;
+    double valorPorHora;
+    int horasDiarias;
+
 public:
   Pessoa(string nome, double valorPorHora, int horasDiarias);
   ~Pessoa();
@@ -9,7 +20,6 @@ public:
   double getCusto(int dias);
 
   void imprimir();
-
-private:
-  /* Criar métodos que forem necessários */
 };
+
+#endif // PESSOA_H
