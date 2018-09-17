@@ -1,16 +1,23 @@
+#ifndef ATIVIDADE_H
+#define ATIVIDADE_H
 #define MAXIMO_RECURSOS 10
 #include <iostream>
+#include <string>
+#include "Pessoa.h"
+
+using namespace std;
+
 class Atividade {
 private:
   string nome;
   int horasNecessarias;
-  Pessoa* recurso;
-  Pessoa** pessoas;
+  Pessoa* pessoas[MAXIMO_RECURSOS];
   int quantidadeDePessoas;
   int duracao;
   double custo;
   /*Métodos*/
   bool jaAdicionada(Pessoa* p);
+  void setDuracao();
 
 
 public:
@@ -32,3 +39,4 @@ public:
 
 
 };
+#endif

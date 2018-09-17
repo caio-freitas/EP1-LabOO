@@ -4,7 +4,6 @@
 #include "Atividade.h"
 #include "Pessoa.h"
 
-using namespace std;
 
 Atividade::Atividade(string nome, int horasNecessarias): //Construtor
   nome(nome), horasNecessarias(horasNecessarias) {       //Inicialização das variáveis com 0
@@ -25,51 +24,58 @@ int Atividade::getHorasNecessarias(){
 
 bool Atividade::adicionar(Pessoa* recurso){
   if (this->quantidadeDePessoas>=MAXIMO_RECURSOS || jaAdicionada(recurso))
-    return FALSE;
+    return false;
   else {
     pessoas[quantidadeDePessoas] = recurso;
     quantidadeDePessoas++;
-    return TRUE;
+    this->setDuracao();
+    return true;
   }
 }
 Pessoa** Atividade::getPessoas(){
-  return this->pessoas;
+  return pessoas;
 }
 int Atividade::getQuantidadeDePessoas(){
   return this->quantidadeDePessoas;
 }
 
 int Atividade::getDuracao(){
-  if (quantidadeDePessoas==0)
-    return -1
-  else {
-    int totaldehoras=0;
-    int i=0;
-    for(i=0; i<quantidadeDePessoas; i++)
-      totaldehoras += pessoas[i]->getHorasDiarias;
-    duracao = ceil(this->horasNecessarias/totaldehoras)
+    if (quantidadeDePessoas == 0)
+        return -1;
     return duracao;
-  }
 }
 
 double Atividade::getCusto(){
   int i=0;
   for (i=0; i<quantidadeDePessoas; i++)
-    this->custo += ((this->duracao)*(pessoas[i]->getHorasDiarias)*(pessoas[i]->getValorPorHora))
-  return this->custo;
+    custo = custo + pessoas[i]->getCusto(duracao);
+  return custo;
 }
 
 void Atividade::imprimir(){
-  /**Implementar**/
+    if (getDuracao()==-1)
+        cout << "Nao ha pessoas cadastradas para a atividade " << nome << endl;
+    else
+        cout << nome << " - " << getDuracao() << " dias - R$" << getCusto() << endl; /*Se não tiver nenhuma pessoa, imprime oq??*/
 }
+
 
 /*A seguinte função retorna TRUE se uma pessoa passada como parametro
 já foi adicionada ao vetor pessoas, e FALSE caso contrário*/
-bool jaAdicionada(Pessoa* p) {
+bool Atividade::jaAdicionada(Pessoa* p) {
   int i;
   for (i=0; i<this->quantidadeDePessoas; i++) {
     if(p == pessoas[i])
-      return TRUE;
+      return true;
   }
-  return FALSE;
+  return false;
 }
+
+void Atividade::setDuracao() {
+    int totaldehoras=0;
+    int i=0;
+    for(i=0; i<quantidadeDePessoas; i++)
+        totaldehoras = pessoas[i]->getHorasDiarias();
+    this->duracao = ceil(this->horasNecessarias/totaldehoras);
+}
+
