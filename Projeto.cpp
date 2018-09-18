@@ -1,9 +1,13 @@
 #define MAXIMO_ATIVIDADES 10
+#include <iostream>
+#include <string>
 #include "Pessoa.h"
 #include "Atividade.h"
 #include "Projeto.h"
 
-Projeto::Projeto(string nome){
+Projeto::Projeto(string nome):
+  nome(nome){
+      quantidadeDeAtividades=0;
     //Implementar
 }
 Projeto::~Projeto(){
@@ -11,36 +15,71 @@ Projeto::~Projeto(){
 }
 
 string Projeto::getNome(){
-    //Implementar
+    return this->nome;
 }
 
 bool Projeto::adicionar(Atividade* a){
-    //Implementar
+    if (this->quantidadeDeAtividades>=MAXIMO_RECURSOS)
+        return false;
+    else {
+        atividades[quantidadeDeAtividades] = a;
+        quantidadeDeAtividades++;
+        return true;
+    }
 }
+
 Atividade** Projeto::getAtividades(){
-    //Implementar
+    return atividades;
 }
+
 int Projeto::getQuantidadeDeAtividades(){
-    //Implementar
+    return this->quantidadeDeAtividades;
 }
 
 bool Projeto::adicionarRecurso(Pessoa* p){
-    //Implementar
+    if (this->quantidadeDePessoas>=MAXIMO_RECURSOS || jaAdicionada(p))
+        return false;
+    else {
+        pessoas[quantidadeDePessoas] = p;
+        quantidadeDePessoas++;
+        return true;
+    }
 }
 Pessoa** Projeto::getPessoas(){
-    //Implementar
+    return pessoas;
 }
 int Projeto::getQuantidadeDePessoas(){
-    //Implementar
+    return this->quantidadeDePessoas;
 }
 
 int Projeto::getDuracao(){
-    //Implementar
+    int i;
+    duracao = 0;
+    for (i=0; i<quantidadeDeAtividades; i++){
+        duracao = duracao + atividades[i]->getHorasNecessarias();
+    }
 }
 double Projeto::getCusto(){
-    //Implementar
+     int i;
+    custo = 0;
+    for (i=0; i<quantidadeDeAtividades; i++){
+        custo = custo + atividades[i]->getCusto();
+    }
 }
 
 void Projeto::imprimir(){
-    //Implementar
+    int i;
+    cout << getNome() << " - " << getDuracao() << " dias -  R$" << getCusto() << endl;
+    for (i=0; i<quantidadeDeAtividades; i++){
+        atividades[i]->imprimir();
+    }
+}
+
+bool Projeto::jaAdicionada(Pessoa* p) {
+  int i;
+  for (i=0; i<this->quantidadeDePessoas; i++) {
+    if(p == pessoas[i])
+      return true;
+  }
+  return false;
 }

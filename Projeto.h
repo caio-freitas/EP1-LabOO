@@ -1,6 +1,13 @@
+#ifndef PROJETO_H
+#define PROJETO_H
 #define MAXIMO_ATIVIDADES 10
+#include <iostream>
+#include <string>
+#include "Atividade.h"
 
-class Projeto(){
+using namespace std;
+
+class Projeto{
 public:
   Projeto(string nome);
   ~Projeto();
@@ -21,5 +28,15 @@ public:
   void imprimir();
 
 private:
+    int quantidadeDeAtividades;
+    int quantidadeDePessoas;
+    Atividade* atividades[MAXIMO_ATIVIDADES];
+    Pessoa* pessoas[MAXIMO_RECURSOS];
+    bool jaAdicionada(Pessoa* p);
+    int duracao;
+    double custo;
+    string nome;
   /*Criar Métodos*/
 };
+
+#endif
