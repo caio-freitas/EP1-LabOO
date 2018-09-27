@@ -15,6 +15,7 @@ private:
   int quantidadeDePessoas;
   int duracao;
   double custo;
+  void setCusto();
   /*Métodos*/
   bool jaAdicionada(Pessoa* p);
   void setDuracao();

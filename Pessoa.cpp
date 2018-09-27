@@ -24,5 +24,5 @@ double Pessoa::getCusto(int dias){
 }
 
 void Pessoa::imprimir(){
-    cout << nome << " - R$" << valorPorHora << " - " << horasDiarias << "h por dia" << endl;
+    cout << this->nome << " - R$" << this->valorPorHora << " - " << this->horasDiarias << "h por dia" << endl;
 }

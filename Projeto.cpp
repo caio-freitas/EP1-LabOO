@@ -8,6 +8,7 @@
 Projeto::Projeto(string nome):
   nome(nome){
       quantidadeDeAtividades=0;
+      quantidadeDePessoas = 0;
     //Implementar
 }
 Projeto::~Projeto(){
@@ -24,6 +25,8 @@ bool Projeto::adicionar(Atividade* a){
     else {
         atividades[quantidadeDeAtividades] = a;
         quantidadeDeAtividades++;
+        setDuracao();
+        setCusto();
         return true;
     }
 }
@@ -40,8 +43,8 @@ bool Projeto::adicionarRecurso(Pessoa* p){
     if (this->quantidadeDePessoas>=MAXIMO_RECURSOS || jaAdicionada(p))
         return false;
     else {
-        pessoas[quantidadeDePessoas] = p;
-        quantidadeDePessoas++;
+        this->pessoas[quantidadeDePessoas] = p;
+        this->quantidadeDePessoas++;
         return true;
     }
 }
@@ -52,19 +55,28 @@ int Projeto::getQuantidadeDePessoas(){
     return this->quantidadeDePessoas;
 }
 
-int Projeto::getDuracao(){
+void Projeto::setDuracao() {
     int i;
-    duracao = 0;
+    this->duracao = 0;
     for (i=0; i<quantidadeDeAtividades; i++){
-        duracao = duracao + atividades[i]->getHorasNecessarias();
+        this->duracao = this->duracao + atividades[i]->getHorasNecessarias();
     }
 }
-double Projeto::getCusto(){
-     int i;
-    custo = 0;
+
+int Projeto::getDuracao(){
+    return duracao;
+}
+
+void Projeto::setCusto() {
+    int i;
+    this->custo = 0;
     for (i=0; i<quantidadeDeAtividades; i++){
-        custo = custo + atividades[i]->getCusto();
+        this->custo = this->custo + atividades[i]->getCusto();
     }
+}
+
+double Projeto::getCusto(){
+    return this->custo;
 }
 
 void Projeto::imprimir(){

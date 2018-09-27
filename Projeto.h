@@ -22,8 +22,11 @@ public:
   Pessoa** getPessoas();
   int getQuantidadeDePessoas();
 
+
   int getDuracao();
+  void setDuracao();
   double getCusto();
+  void setCusto();
 
   void imprimir();
 
