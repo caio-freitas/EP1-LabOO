@@ -11,7 +11,6 @@ class Atividade {
 private:
   string nome;
   int horasNecessarias;
-  Pessoa* pessoas[MAXIMO_RECURSOS];
   int quantidadeDePessoas;
   int duracao;
   double custo;
@@ -20,6 +19,8 @@ private:
   bool jaAdicionada(Pessoa* p);
   void setDuracao();
 
+protected:
+    Pessoa* pessoas[MAXIMO_RECURSOS];
 
 public:
   Atividade(string nome, int horasNecessarias);
