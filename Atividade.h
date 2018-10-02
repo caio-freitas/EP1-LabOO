@@ -18,9 +18,7 @@ private:
   /*Métodos*/
   bool jaAdicionada(Pessoa* p);
   void setDuracao();
-
-protected:
-    Pessoa* pessoas[MAXIMO_RECURSOS];
+  Pessoa* pessoas[MAXIMO_RECURSOS];
 
 public:
   Atividade(string nome, int horasNecessarias);

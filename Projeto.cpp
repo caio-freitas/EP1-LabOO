@@ -9,6 +9,7 @@ Projeto::Projeto(string nome):
   nome(nome){
       quantidadeDeAtividades=0;
       quantidadeDePessoas = 0;
+      custo = 0;
     //Implementar
 }
 Projeto::~Projeto(){
@@ -25,8 +26,6 @@ bool Projeto::adicionar(Atividade* a){
     else {
         atividades[quantidadeDeAtividades] = a;
         quantidadeDeAtividades++;
-        setDuracao();
-        setCusto();
         return true;
     }
 }
@@ -56,11 +55,10 @@ int Projeto::getQuantidadeDePessoas(){
 }
 
 void Projeto::setDuracao() {
-    int i;
-    this->duracao = 0;
-    for (i=0; i<quantidadeDeAtividades; i++){
-        this->duracao = this->duracao + atividades[i]->getHorasNecessarias();
-    }
+    int i=0;
+    duracao=0;
+    for(i=0; i<quantidadeDeAtividades; i++)
+        this->duracao = this->duracao + atividades[i]->getDuracao();
 }
 
 int Projeto::getDuracao(){
@@ -69,7 +67,7 @@ int Projeto::getDuracao(){
 
 void Projeto::setCusto() {
     int i;
-    this->custo = 0;
+    custo=0;
     for (i=0; i<quantidadeDeAtividades; i++){
         this->custo = this->custo + atividades[i]->getCusto();
     }
@@ -81,7 +79,10 @@ double Projeto::getCusto(){
 
 void Projeto::imprimir(){
     int i;
+    setDuracao();
+    setCusto();
     cout << getNome() << " - " << getDuracao() << " dias -  R$" << getCusto() << endl;
+    cout << "----" << endl;
     for (i=0; i<quantidadeDeAtividades; i++){
         atividades[i]->imprimir();
     }

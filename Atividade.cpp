@@ -47,6 +47,7 @@ int Atividade::getDuracao(){
 
 double Atividade::getCusto(){
   int i=0;
+  double custo=0;
   for (i=0; i<quantidadeDePessoas; i++)
     custo = custo + pessoas[i]->getCusto(duracao);
   return custo;
