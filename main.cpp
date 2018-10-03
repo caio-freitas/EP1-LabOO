@@ -54,15 +54,16 @@ int main() {
                 proj->adicionar(atividade);
                 cout << "Deseja adicionar um recurso (s/n): ";
                 cin >> ans;
+                option = 1;
                 while (ans=='s'&& option != 0) {
                     Pessoa** persons;
                     persons = proj->getPessoas();
-                    for(i=0; i<=proj->getQuantidadeDeAtividades(); i++) {
+                    for(i=0; i< proj->getQuantidadeDePessoas(); i++) {
                         cout << i+1 << " - ";
                         persons[i]->imprimir();
                     }
                     cout << "Escolha uma pessoa ou 0 para cancelar: ";
-                       cin >> option;
+                    cin >> option;
                     if(option != 0) {
                         if(atividade->adicionar(persons[option-1]) == 0)
                           cout << "Nao foi possivel adicionar a pessoa" << endl;

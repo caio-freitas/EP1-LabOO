@@ -27,8 +27,8 @@ bool Atividade::adicionar(Pessoa* recurso){
     return false;
   else {
     pessoas[quantidadeDePessoas] = recurso;
+    this->atualizaCustoEDuracao();
     quantidadeDePessoas++;
-    this->setDuracao();
     return true;
   }
 }
@@ -65,18 +65,22 @@ void Atividade::imprimir(){
 já foi adicionada ao vetor pessoas, e FALSE caso contrário*/
 bool Atividade::jaAdicionada(Pessoa* p) {
   int i;
-  for (i=0; i<this->quantidadeDePessoas; i++) {
+  for (i=0; i <= this->quantidadeDePessoas; i++) {
     if(p == pessoas[i])
       return true;
   }
   return false;
 }
 
-void Atividade::setDuracao() {
-    int totaldehoras=0;
+void Atividade::atualizaCustoEDuracao() {
     int i=0;
-    for(i=0; i<quantidadeDePessoas; i++)
-        totaldehoras = pessoas[i]->getHorasDiarias();
+    double totaldehoras = 0;
+    /** A cada inicialização da função será calculada do 0 a duração estimada da Atividade **/
+    for(i=0; i<=quantidadeDePessoas; i++) {
+        totaldehoras += pessoas[i]->getHorasDiarias();
+    }
     this->duracao = ceil(this->horasNecessarias/totaldehoras);
+    /** Adiciona o custo da última pessoa adicionada ao custo da atividade **/
+    this->custo += pessoas[quantidadeDePessoas]->getCusto(duracao);
 }
 

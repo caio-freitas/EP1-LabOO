@@ -17,7 +17,7 @@ private:
   void setCusto();
   /*Métodos*/
   bool jaAdicionada(Pessoa* p);
-  void setDuracao();
+  void atualizaCustoEDuracao();
   Pessoa* pessoas[MAXIMO_RECURSOS];
 
 public:

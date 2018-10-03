@@ -20,7 +20,7 @@ int Pessoa::getHorasDiarias(){
     return horasDiarias;
 }
 double Pessoa::getCusto(int dias){
-    return dias * horasDiarias * valorPorHora;
+    return dias * this->horasDiarias * this->valorPorHora;
 }
 
 void Pessoa::imprimir(){
